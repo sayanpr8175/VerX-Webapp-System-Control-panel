@@ -1,43 +1,139 @@
-body{
+body {
   background-color: #fff;
   font-family: sans-serif;
-  color:  #333333;
-  font: 14px Helvetica, sans-serif;
+  color: #333333;
+  font: 14px Helvetica, sans-serif
   box-sizing: border-box;
 }
 
-#page{
-  margin: 30px;
-  background-color: white;
+#page {
+  margin: 20px;
+  background-color: #fff;
 }
 
-header{
+.container {
+  height: inherit;
+  padding-bottom: 20px;
+}
+
+#content {
+  background-color: #e1e1e1;
+  border-radius: .5em .5em .5em .5em;
+  box-shadow: 1px 7px 7px 1px rgba(0, 0, 0, 0.4);
+  display: block;
+}
+
+#content:after {
+  content: " ";
+  display: block;
+  height: 0;
+  clear: both;
+}
+
+.header {
   padding: 20px;
 }
 
-.header h1{
+.header h1 {
   padding-bottom: 0.3em;
-  color: #0eaba3;
+  color: #008080;
   font-size: 45px;
   font-weight: normal;
-  font-family: Garmond, sans-serif;
+  font-family: Garmond, "Helvetica";
   text-align: left;
-  margin: 0;
+  margin:0;
 }
 
-.header h1 span{
+.header h1 span {
   font-weight: bold;
-  font-family: Garmond, sans-serif;
-  color: black;
+  font-family: Garmond, "Helvetica";
+  color: #000;
 }
 
-.header h3{
-    padding-top: -5px;
-    padding-left: 30px;
-    font-weight: bold;
-    font-family: Arial, "sans-serif";
-    font-size: 17px;
-    color: #b6e7e7;
-    margin: -15px;
+h2 {
+  padding-bottom: 0.2em;
+  border-bottom: 1px solid #eee;
+  margin-top: 2px;
+}
 
+.header h3 {
+  padding-top: 5px;
+  padding-left: 15px;
+  font-weight: bold;
+  font-family: Arial, "Helvetica";
+  font-size: 17px;
+  color: #b6b6b6;
+  margin: -25px 0 -5px 0;
+}
+
+.box380 {
+  width:380px;
+  padding: 20px;
+  margin: 20px;
+  border: 1px solid #ddd;
+  border-radius: 1em 1em 1em 1em;
+  box-shadow: 1px 7px 7px 1px rgba(0,0,0,0.4);
+  background: #fff;
+}
+
+.box-full {
+  padding: 20px;
+  border 1px solid #ddd;
+  border-radius: 1em 1em 1em 1em;
+  box-shadow: 1px 7px 7px 1px rgba(0,0,0,0.4);
+  background: #fff;
+  margin: 20px;
+  width: 840px;
+}
+
+.left {
+  float: left;
+  clear: left;
+}
+
+.right {
+  float: right;
+  clear: right;
+}
+
+@media (max-width: 494px) {
+  #page {
+    width: inherit;
+    margin: 5px auto;
+  }
+  #content {
+    padding: 1px;
+  }
+  .box380 {
+    margin: 8px 8px 12px 8px;
+    padding: 10px;
+    width: inherit;
+    float: none;
+  }
+  .box-full {
+    margin: 8px 8px 12px 8px;
+    padding: 10px;
+    width: inherit;;
+    float: none;
+  }
+}
+
+@media (min-width: 494px) and (max-width: 980px) {
+  #page {
+    width: 465px;
+    margin: 0 auto;
+  }
+  .box380 {
+    width: 380px;
+  }
+  .box-full {
+    width: 380px;
+  }
+}
+
+@media (min-width: 980px) {
+  #page {
+    width: 930px;
+    margin: 0 auto;
+  }
 }
