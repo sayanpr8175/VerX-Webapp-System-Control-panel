@@ -1,0 +1,32 @@
+body{
+  background-color: #fff;
+  font-family: sans-serif;
+  color:  #333333;
+  font: 14px Helvetica, sans-serif;
+  box-sizing: border-box;
+}
+
+#page{
+  margin: 30px;
+  background-color: white;
+}
+
+header{
+  padding: 20px;
+}
+
+.header h1{
+  padding-bottom: 0.3em;
+  color: #0eaba3;
+  font-size: 45px;
+  font-weight: normal;
+  font-family: Garmond, sans-serif;
+  text-align: left;
+  margin: 0;
+}
+
+.header h1 span{
+  font-weight: bold;
+  font-family: Garmond, sans-serif;
+  color: black;
+}
