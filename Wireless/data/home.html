@@ -3,7 +3,10 @@
   <head>
     <meta charset="utf-8">
     <title> App Control Panel </title>
-    <link rel="stylesheet" href="styles.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.2/css/all.min.css
+">
+    <link rel="stylesheet" type="text/css" href="styles.css">
   </head>
   <body>
     <!-- Start of the page -->
@@ -20,6 +23,7 @@
             <h2>Switch Control</h2>
 
           <div class="switchBox">
+            <div class="switchName"><strong> Switch 1 </strong></div>
           <div class="switchSlider">
 
     <label class="relaySwitch">
@@ -35,14 +39,67 @@
 
           <div class="box380 right">
             <h2>Sensors' Data</h2>
+
+<div class="sensors-container">
+    <div class="sensors">
+      <p class="sensor">
+        <i class="fas fa-thermometer-half" style="color:#0275db"></i>
+        <span class="sensor-labels"> Kolkata Temperature</span>
+        <span></span>
+        <sup class="units">°C</sup>
+      </p>
+<hr>
+
+    </div>
+
+    <div class="sensors">
+      <p class="sensor">
+        <i class="fas fa-thermometer-full" style="color:#d9543f"></i>
+        <span class="sensor-labels">DHT11 Temperature</span>
+        <span></span>
+        <sup class="units">°C</sup>
+      </p>
+<hr>
+      <p class="sensor">
+        <i class="fas fa-tint" style="color:#5bc5ef"></i>
+        <span class="sensor-labels">DHT11 Humidity</span>
+        <span></span>
+        <sup class="units">%</sup>
+      </p>
+
+
+    </div>
+
+</div>
+
           </div>
 
           <div class="box-full left">
             <h2>Visual Charts</h2>
+            <canvas id="canvas" width="400" height="400"></canvas>
           </div>
 
           <div class="box380 left">
             <h2>Latest Data</h2>
+            <p>
+              <input type="checkbox" id="latest_data_enabled"name="" value="">
+              <label for="latest_data_enabled"><strong> Enable Data Info </strong></label>
+            </p>
+            <p>
+              <table>
+                <tr>
+                  <th>key</th>
+                  <th>value</th>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                </tr>
+
+              </table> <br>
+            </p>
+
+
           </div>
 
           <div class="box380 right">
