@@ -309,25 +309,34 @@ hr {
   border: none;
 }
 
-table{
+table {
   width: 100%;
   border-collapse: collapse;
 }
 
-th{
+th {
   background-color: #777777;
   color: #fff;
   border: 1px solid #f1f1f1;
   padding: 8px;
 }
 
-td{
-   background-color: #fff;
-   color: #777777;
-   border: 1px solid #e1e1e1;
-   padding: 8px;
+td {
+  background-color: #fff;
+  color: #777777;
+  border: 1px solid #e1e1e1;
+  padding: 8px;
 }
 
-tr:nth-child(2n+2){
+tr:nth-child(2n+2) {
   background-color: #f3f3f3;
+}
+
+table#logsTable {
+  table-layout: fixed;
+}
+
+table#logsTable {
+  white-space: normal;
+  word-wrap: break-word;
 }
