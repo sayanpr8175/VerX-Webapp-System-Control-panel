@@ -1,6 +1,9 @@
 var basehost = window.location.hostname;
 var baseEndpoint = 'http://'+basehost;
 
+var ctx = document.getElementById('dataplot').getContex('2d');
+var dataChart;
+
 function BaseViewModel(defaults, remoteUrl, mappings){
   if(mappings == undefined){
     mappings = {};
@@ -125,8 +128,39 @@ function LogsViewModel(){
       after();
     });
   };
-
 }
+
+function GraphViewModel(){
+    var self = this;
+    self.remoteUrl = baseEndpoint + '/lastvalues';
+
+//  chart.js config
+    var graphColors = [
+      '#1cc88a',
+      '#858796',
+      '#858796',
+      '#d9534f',
+      '#5bc0de',
+      '#0275d8'
+    ];
+    var graphLabels = ["R1", "R2", "R3", "T1", "H", "T2"];
+    var datasets = [];
+
+    var maxDataPoints = 20;
+    self.fetching = ko.observable(false);
+    self.init = function(){
+
+      dataChart = new Charts(ctx,{
+        type: 'line',
+        data: {
+          labels:[],
+          datasets: datasets
+        },
+        options: options
+      });
+    };
+}
+
 
 function MainViewModel(){
   var self = this;
