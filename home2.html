@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title> App Control Panel </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.2/css/all.min.css
+">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+  </head>
+  <body>
+    <!-- Start of the page -->
+    <div id="page">
+      <div class="header">
+        <h1>Ver X<span>Control Panel</span> </h1>
+        <h3>Administrator logged in . . .</h3>
+      </div>
+      <!--Begining of the container -->
+      <div class="container">
+        <div id="content">
+
+          <div class="box380 left">
+            <h2>Switch Control</h2>
+<div data-bind="foreach: $root.availableRelays">
+
+  <div class="switchBox">
+    <div class="switchName"><strong data-bind="text: '&nbsp;' +name()"> </strong></div>
+    <div class="switchSlider">
+
+    <label class="relaySwitch">
+    <input class="relaySwitch-input" type="checkbox" data-bind= "checked: state" />
+    <span class="relaySwitch-label" data-on="On" data-off="Off"></span>
+    <span class="relaySwitch-handle"></span>
+    </label>
+
+  </div>
+</div>
+
+
+</div>
+
+          </div>
+
+          <div class="box380 right">
+            <h2>Sensors' Data</h2>
+
+<div class="sensors-container">
+    <div class="sensors">
+      <p class="sensor">
+        <i class="fas fa-thermometer-half" style="color:#0275db"></i>
+        <span class="sensor-labels"> Kolkata Temperature</span>
+        <span data-bind = "text: status.dallas_temperature()"></span>
+        <sup class="units">°C</sup>
+      </p>
+<hr>
+
+    </div>
+
+    <div class="sensors">
+      <p class="sensor">
+        <i class="fas fa-thermometer-full" style="color:#d9543f"></i>
+        <span class="sensor-labels">DHT11 Temperature</span>
+        <span data-bind = "text: status.dht_temperature()"></span>
+        <sup class="units">°C</sup>
+      </p>
+<hr>
+      <p class="sensor">
+        <i class="fas fa-tint" style="color:#5bc5ef"></i>
+        <span class="sensor-labels">DHT11 Humidity</span>
+        <span data-bind ="text: status.dht_humidity()"></span>
+        <sup class="units">%</sup>
+      </p>
+
+
+    </div>
+
+</div>
+
+          </div>
+
+          <div class="box-full left">
+            <h2>Visual Charts</h2>
+            <canvas id="canvas" width="400" height="400"></canvas>
+          </div>
+
+          <div class="box380 left">
+            <h2>Latest Data</h2>
+            <p>
+              <input type="checkbox" id="latest_data_enabled">
+              <label for="latest_data_enabled"><strong> Enable Data Info </strong></label>
+            </p>
+            <p>
+              <table>
+                <tr>
+                  <th>key</th>
+                  <th>value</th>
+                </tr>
+                <tbody data-bind "foreach: last.values">
+                  <tr>
+                    <td data-bind="text: key"></td>
+                    <td data-bind="text: value"></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+
+              </table> <br>
+            </p>
+
+
+          </div>
+
+          <div class="box380 right">
+            <h2>Logs Indicators</h2>
+            <p>
+              <input type="checkbox" id="logs_enabled" name="" value="">
+              <label for="logs_enabled"> <strong>Enable Logs</strong> </label>
+            </p>
+            <p>
+              <table id="logsTable">
+                <tr>
+                  <th>Time Stamp</th>
+                  <th>Logs</th>
+                </tr>
+                <tbody data-bind "foreach: logs.entries">
+                  <tr>
+                    <td data-bind="text: timestamp"></td>
+                    <td data-bind="text: log"></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+
+              </table> <br>
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+      <!--End of the container -->
+
+    </div>
+    <!-- End of the page-->
+  <script src="lib.js" type="text/javascript"> </script>
+  <script src="app.js" type="text/javascript"> </script>
+
+
+  </body>
+</html>

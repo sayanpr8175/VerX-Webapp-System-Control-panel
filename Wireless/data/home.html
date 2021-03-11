@@ -1,144 +1,141 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title> App Control Panel </title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+  <meta charset="utf-8">
+  <title>App Control Panel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.2/css/all.min.css">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.2/css/all.min.css
-">
-    <link rel="stylesheet" type="text/css" href="styles.css">
-  </head>
-  <body>
-    <!-- Start of the page -->
-    <div id="page">
-      <div class="header">
-        <h1>Ver X<span>Control Panel</span> </h1>
-        <h3>Administrator logged in . . .</h3>
-      </div>
-      <!--Begining of the container -->
-      <div class="container">
-        <div id="content">
+<body>
 
-          <div class="box380 left">
-            <h2>Switch Control</h2>
+  <div id="page">
+    <!--begin page -->
 
-          <div class="switchBox">
-            <div class="switchName"><strong> Switch 1 </strong></div>
-          <div class="switchSlider">
+    <div class="header">
+      <h1>Ver X<span>Control Panel</span> </h1>
+      <h3>Administrator logged in . . .</h3>
+      <h5>System built by Sayan Pramanik</h5>
 
-    <label class="relaySwitch">
-	  <input class="relaySwitch-input" type="checkbox" />
-	  <span class="relaySwitch-label" data-on="On" data-off="Off"></span>
-	  <span class="relaySwitch-handle"></span>
-    </label>
+    </div>
+
+    <div class="container" data-bind= "visible: !initialised()">
+      Loading, please wait...
+    </div>
+
+    <div class="container" data-bind= "visible: initialised" style="display:none">
+      <!--begin container -->
+
+      <div id="content">
+
+        <div class="box380 left">
+          <h2>Switch Control</h2>
+          <div data-bind="foreach: $root.availableRelays">
+            <div class="switchBox">
+              <div class="switchName"><strong data-bind="text: '&nbsp;' + name()"></strong></div>
+              <div class="switchSlider">
+                <label class="relaySwitch">
+                  <input class="relaySwitch-input" type="checkbox" data-bind= "checked: state, click: $root.onSwitchClick" />
+                  <span class="relaySwitch-label" data-on="On" data-off="Off"></span>
+                  <span class="relaySwitch-handle"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="box380 right">
+          <h2>Sensors</h2>
+          <div class="sensors-container">
+            <div class="sensors">
+              <p class="sensor">
+                <i class="fas fa-thermometer-half" style="color:#0275d8"></i>
+                <span class="sensor-labels">Kolkata Temperature</span>
+                <span data-bind = "text: status.dallas_temperature()"></span>
+                <sup class="units">°C</sup>
+              </p>
+              <hr>
+            </div>
+
+            <div class="sensors">
+              <p class="sensor">
+                <i class="fas fa-thermometer-full" style="color:#d9534f"></i>
+                <span class="sensor-labels">DHT Temperature</span>
+                <span data-bind = "text: status.dht_temperature()"></span>
+                <sup class="units">°C</sup>
+              </p>
+              <hr>
+              <p class="sensor">
+                <i class="fas fa-tint" style="color:#5bc0de"></i>
+                <span class="sensor-labels">DHT Humidity</span>
+                <span data-bind = "text: status.dht_humidity()"></span>
+                <sup class="units">%</sup>
+              </p>
+            </div>
 
           </div>
         </div>
 
-          </div>
+        <div class="box-full left">
+          <h2>Charts</h2>
+          <canvas id="dataplot" width="400" height="400"></canvas>
+        </div>
 
-          <div class="box380 right">
-            <h2>Sensors' Data</h2>
-
-<div class="sensors-container">
-    <div class="sensors">
-      <p class="sensor">
-        <i class="fas fa-thermometer-half" style="color:#0275db"></i>
-        <span class="sensor-labels"> Kolkata Temperature</span>
-        <span data-bind = "text: status.dallas_temperature()"></span>
-        <sup class="units">°C</sup>
-      </p>
-<hr>
-
-    </div>
-
-    <div class="sensors">
-      <p class="sensor">
-        <i class="fas fa-thermometer-full" style="color:#d9543f"></i>
-        <span class="sensor-labels">DHT11 Temperature</span>
-        <span data-bind = "text: status.dht_temperature()"></span>
-        <sup class="units">°C</sup>
-      </p>
-<hr>
-      <p class="sensor">
-        <i class="fas fa-tint" style="color:#5bc5ef"></i>
-        <span class="sensor-labels">DHT11 Humidity</span>
-        <span data-bind ="text: status.dht_humidity()"></span>
-        <sup class="units">%</sup>
-      </p>
-
-
-    </div>
-
-</div>
-
-          </div>
-
-          <div class="box-full left">
-            <h2>Visual Charts</h2>
-            <canvas id="canvas" width="400" height="400"></canvas>
-          </div>
-
-          <div class="box380 left">
-            <h2>Latest Data</h2>
-            <p>
-              <input type="checkbox" id="latest_data_enabled">
-              <label for="latest_data_enabled"><strong> Enable Data Info </strong></label>
-            </p>
-            <p>
-              <table>
+        <div class="box380 left">
+          <h2>Latest Data</h2>
+          <p>
+            <input type="checkbox" id="latest_data_enabled" data-bind= "checked: latest_data_enabled">
+            <label for="latest_data_enabled"><strong>Enable Data Info</strong></label>
+          </p>
+          <p>
+            <table data-bind= "visible: latest_data_enabled">
+              <tr>
+                <th>Key</th>
+                <th>Value</th>
+              </tr>
+              <tbody data-bind="foreach: last.values">
                 <tr>
-                  <th>key</th>
-                  <th>value</th>
+                  <td data-bind="text: key"></td>
+                  <td data-bind="text: value"></td>
                 </tr>
-                <tbody data-bind "foreach: last.values">
-                  <tr>
-                    <td data-bind="text: key"></td>
-                    <td data-bind="text: value"></td>
-                    <td></td>
-                  </tr>
-                </tbody>
+              </tbody>
+            </table><br>
+          </p>
+        </div>
 
-              </table> <br>
-            </p>
-
-
-          </div>
-
-          <div class="box380 right">
-            <h2>Logs Indicators</h2>
-            <p>
-              <input type="checkbox" id="logs_enabled" name="" value="">
-              <label for="logs_enabled"> <strong>Enable Logs</strong> </label>
-            </p>
-            <p>
-              <table id="logsTable">
+        <div class="box380 right">
+          <h2>Logs</h2>
+          <p>
+            <input type="checkbox" id="logs_enabled" data-bind= "checked: logs_enabled">
+            <label for="latest_datat_enabled"><strong>Enable Logs</strong></label>
+          </p>
+          <p>
+            <table id="logsTable" data-bind = "visible: logs_enabled">
+              <tr>
+                <th>Timestamp</th>
+                <th>Log</th>
+              </tr>
+              <tbody data-bind="foreach: logs.entries">
                 <tr>
-                  <th>Time Stamp</th>
-                  <th>Logs</th>
+                  <td data-bind="text: timestamp"></td>
+                  <td data-bind="text: log"></td>
                 </tr>
-                <tbody data-bind "foreach: logs.entries">
-                  <tr>
-                    <td data-bind="text: timestamp"></td>
-                    <td data-bind="text: log"></td>
-                    <td></td>
-                  </tr>
-                </tbody>
-
-              </table> <br>
-            </p>
-
-          </div>
-
+              </tbody>
+            </table><br>
+          </p>
         </div>
 
       </div>
-      <!--End of the container -->
 
     </div>
-    <!-- End of the page-->
+    <!--end container -->
 
-  </body>
+  </div>
+  <!--end page -->
+  <script src="lib.js" type="text/javascript"></script>
+  <script src="app.js" type="text/javascript"></script>
+</body>
+
 </html>
