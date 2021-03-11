@@ -47,7 +47,7 @@
       <p class="sensor">
         <i class="fas fa-thermometer-half" style="color:#0275db"></i>
         <span class="sensor-labels"> Kolkata Temperature</span>
-        <span></span>
+        <span data-bind = "text: status.dallas_temperature()"></span>
         <sup class="units">°C</sup>
       </p>
 <hr>
@@ -58,14 +58,14 @@
       <p class="sensor">
         <i class="fas fa-thermometer-full" style="color:#d9543f"></i>
         <span class="sensor-labels">DHT11 Temperature</span>
-        <span></span>
+        <span data-bind = "text: status.dht_temperature()"></span>
         <sup class="units">°C</sup>
       </p>
 <hr>
       <p class="sensor">
         <i class="fas fa-tint" style="color:#5bc5ef"></i>
         <span class="sensor-labels">DHT11 Humidity</span>
-        <span></span>
+        <span data-bind ="text: status.dht_humidity()"></span>
         <sup class="units">%</sup>
       </p>
 
@@ -93,9 +93,10 @@
                   <th>key</th>
                   <th>value</th>
                 </tr>
-                <tbody>
+                <tbody data-bind "foreach: last.values">
                   <tr>
-                    <td></td>
+                    <td data-bind="text: key"></td>
+                    <td data-bind="text: value"></td>
                     <td></td>
                   </tr>
                 </tbody>
@@ -118,12 +119,13 @@
                   <th>Time Stamp</th>
                   <th>Logs</th>
                 </tr>
-            <tbody>
-              <tr>
-                <td></td>
-                <td></td>
-              </tr>
-            </tbody>
+                <tbody data-bind "foreach: logs.entries">
+                  <tr>
+                    <td data-bind="text: timestamp"></td>
+                    <td data-bind="text: log"></td>
+                    <td></td>
+                  </tr>
+                </tbody>
 
               </table> <br>
             </p>
