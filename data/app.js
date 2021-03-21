@@ -1,3 +1,5 @@
+// @Sayan Pramanik 
+
 var baseHost = window.location.hostname;
 var baseEndpoint = 'http://' + baseHost;
 
